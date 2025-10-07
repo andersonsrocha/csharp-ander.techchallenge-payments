@@ -16,6 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\tests\TechChallengePayments.Application.Test\TechChallengePayments.Application.Test.csproj" />
       <ProjectReference Include="..\TechChallengePayments.Application\TechChallengePayments.Application.csproj" />
       <ProjectReference Include="..\TechChallengePayments.Data\TechChallengePayments.Data.csproj" />
       <ProjectReference Include="..\TechChallengePayments.Domain\TechChallengePayments.Domain.csproj" />

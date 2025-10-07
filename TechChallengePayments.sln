@@ -26,6 +26,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallengePayments.Secur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallengePayments.Application.Test", "tests\TechChallengePayments.Application.Test\TechChallengePayments.Application.Test.csproj", "{A6F1B5C5-3AFD-4E3B-B9C7-0EC9F8B39478}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.3 - Elasticsearch", "4.3 - Elasticsearch", "{4F71DE0E-600F-4304-89D3-839972F0B34A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallengePayments.Elasticsearch", "src\TechChallengePayments.Elasticsearch\TechChallengePayments.Elasticsearch.csproj", "{24F4B7AB-77E1-4BC0-BD12-8997FC5BF24C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +44,8 @@ Global
 		{B26F9FF3-CE5D-4FB7-B532-AFBEFB6A952B} = {11D910FF-34FA-4278-AE3B-5CC66A15A365}
 		{5533D3A6-B413-40CC-8E56-575A32C6D57A} = {466993BD-F061-4FEC-A1C0-51DB01EBF468}
 		{A6F1B5C5-3AFD-4E3B-B9C7-0EC9F8B39478} = {3D768762-0908-47DB-BDBF-CA6C5E3956DF}
+		{4F71DE0E-600F-4304-89D3-839972F0B34A} = {E2AA281A-EE41-4F4F-94E6-A0A5CB332194}
+		{24F4B7AB-77E1-4BC0-BD12-8997FC5BF24C} = {4F71DE0E-600F-4304-89D3-839972F0B34A}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3BBA1E15-AD68-4516-BEFB-775A42CDE8AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -66,5 +72,9 @@ Global
 		{A6F1B5C5-3AFD-4E3B-B9C7-0EC9F8B39478}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6F1B5C5-3AFD-4E3B-B9C7-0EC9F8B39478}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6F1B5C5-3AFD-4E3B-B9C7-0EC9F8B39478}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24F4B7AB-77E1-4BC0-BD12-8997FC5BF24C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24F4B7AB-77E1-4BC0-BD12-8997FC5BF24C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24F4B7AB-77E1-4BC0-BD12-8997FC5BF24C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24F4B7AB-77E1-4BC0-BD12-8997FC5BF24C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

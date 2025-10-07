@@ -13,6 +13,7 @@
     <ItemGroup>
       <ProjectReference Include="..\TechChallengePayments.Data\TechChallengePayments.Data.csproj" />
       <ProjectReference Include="..\TechChallengePayments.Domain\TechChallengePayments.Domain.csproj" />
+      <ProjectReference Include="..\TechChallengePayments.Elasticsearch\TechChallengePayments.Elasticsearch.csproj" />
       <ProjectReference Include="..\TechChallengePayments.Security\TechChallengePayments.Security.csproj" />
     </ItemGroup>
 
