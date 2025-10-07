@@ -33,13 +33,13 @@ stages:
             inputs:
               command: "build"
               projects: "**/*.csproj"
-              arguments: "--no-restore --configuration $(buildConfiguration) --build-arg NEW_RELIC_LICENSE_KEY=$(nrKey)"
+              arguments: "--no-restore --configuration $(buildConfiguration)"
 
           - task: DotNetCoreCLI@2
             displayName: "Executar testes unitários"
             inputs:
               command: "test"
-              projects: "**/TechChallengeGames.Application.Tests.csproj"
+              projects: "**/TechChallengePayments.Application.Tests.csproj"
               arguments: '--configuration $(buildConfiguration) --no-build --collect "Code Coverage"'
               publishTestResults: true
 
@@ -51,7 +51,7 @@ stages:
     dependsOn: Build
     condition: succeeded()
     jobs:
-      - job: Construir e publicar imagem Docker
+      - job: Build
         steps:
           - task: Docker@2
             displayName: "Construir imagem Docker"
@@ -109,6 +109,7 @@ stages:
                       Credentials__Password="$(adminPassword)"
                       ElasticSettings__ApiKey="$(elasticApiKey)"
                       ElasticSettings__CloudId="$(elasticCloudId)"
+                      NEW_RELIC_LICENSE_KEY="$(nrKey)"
                   displayName: "Construir e Rodar o Contêiner Docker com a Aplicação .NET"
 
   - stage: Infraestructure
@@ -116,7 +117,7 @@ stages:
     dependsOn: Deploy
     condition: succeeded()
     jobs:
-      - job: Implantar Infraestrutura New Relic
+      - job: NewRelic
         steps:
           - script: |
               docker run \
