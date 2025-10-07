@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Payments\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TechChallengePayments.Data\TechChallengePayments.Data.csproj" />
+      <ProjectReference Include="..\TechChallengePayments.Domain\TechChallengePayments.Domain.csproj" />
+      <ProjectReference Include="..\TechChallengePayments.Security\TechChallengePayments.Security.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Divino.OperationResult" Version="4.0.1" />
+    </ItemGroup>
+
+</Project>
