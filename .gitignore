@@ -49,4 +49,4 @@ ipch/
 riderModule.iml
 /_ReSharper.Caches/
 
-*.Development.json
+**/appsettings.Development.json
