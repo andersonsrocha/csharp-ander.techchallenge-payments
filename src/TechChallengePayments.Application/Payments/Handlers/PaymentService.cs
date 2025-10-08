@@ -52,6 +52,14 @@ public class PaymentService(IPaymentRepository repository, IClient client, IElas
         var payment = (Payment)request;
         repository.Add(payment);
         await unitOfWork.CommitAsync(CancellationToken.None);
+        
+        logger.LogInformation("Sending payment event to azure function.");
+        if (await client.SendToPayment(payment, game) is null)
+        {
+            logger.LogError("Error sending payment to Azure Function.");
+            return Result.Error<Guid>(new Exception("Error processing payment."));
+        }
+        
         logger.LogInformation("Payment successfully created. Saving payment log to Elasticsearch.");
         await elastic.AddOrUpdate(new PaymentLog(payment.Id, payment.UserId, payment.GameId), nameof(PaymentLog).ToLower());
         

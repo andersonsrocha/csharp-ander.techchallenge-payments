@@ -1,6 +1,7 @@
 using System.Net.Http.Json;
 using Microsoft.Extensions.Configuration;
 using TechChallengePayments.Domain.Dto;
+using TechChallengePayments.Domain.Models;
 
 namespace TechChallengePayments.Application
 {
@@ -8,6 +9,7 @@ namespace TechChallengePayments.Application
     {
         private readonly string? _gameUrl = configuration["Microservices:GameUrl"];
         private readonly string? _userUrl = configuration["Microservices:UserUrl"];
+        private readonly string? _paymentFuncUrl = configuration["Microservices:PaymentFuncUrl"];
         private readonly string? _email = configuration["Credentials:Email"];
         private readonly string? _password = configuration["Credentials:Password"];
         
@@ -35,6 +37,14 @@ namespace TechChallengePayments.Application
             
             var response = await httpClient.GetFromJsonAsync<GameDto>($"{_gameUrl}/api/games/{gameId}");
             return response;
+        }
+
+        public async Task<PaymentFuncDto?> SendToPayment(Payment payment, GameDto game)
+        {
+            var response = await httpClient.PostAsJsonAsync($"{_paymentFuncUrl}/api/payment", new { payment.Id, payment.UserId, payment.GameId, game.Price });
+            if (!response.IsSuccessStatusCode) return null;
+            var funcDto = await response.Content.ReadFromJsonAsync<PaymentFuncDto>();
+            return funcDto;
         }
     }
 }
