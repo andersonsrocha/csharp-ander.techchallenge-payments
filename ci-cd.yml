@@ -98,7 +98,7 @@ stages:
   #                 inputs:
   #                   azureSubscription: "Assinatura para estudantes(07de936b-e0c8-47b8-b15f-3d778712ecb6)"
   #                   location: "$(location)"
-  #                   imageToDeploy: "$(acrLoginServer)/$(acrName):$(tag)"
+  #                   imageToDeploy: "$(acrLoginServer)/$(imageName):$(tag)"
   #                   containerAppName: "$(appName)"
   #                   resourceGroup: "$(resourceGroup)"
   #                   targetPort: "8080"
