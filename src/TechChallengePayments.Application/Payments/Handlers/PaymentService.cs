@@ -28,21 +28,6 @@ public class PaymentService(IPaymentRepository repository, IClient client, IElas
 
     public async Task<Result<Guid>> CreateAsync(CreatePaymentRequest request)
     {
-        logger.LogInformation("Log in to the user service");
-        var login = await client.LoginAsync();
-        if (login is null)
-            return Result.Error<Guid>(new Exception("Invalid credentials."));
-        
-        logger.LogInformation("Log in successful. Retrieving user information.");
-        var user = await client.GetUserAsync(request.UserId, login.Token);
-        if (user is null)
-            return Result.Error<Guid>(new Exception("User not found."));
-
-        logger.LogInformation("User successfully retrieved. Retrieving game information.");
-        var game = await client.GetGameAsync(request.GameId, login.Token);
-        if (game is null)
-            return Result.Error<Guid>(new Exception("User not found."));
-        
         logger.LogInformation("Game successfully retrieved. Verifying existing payment for this user and game.");
         var existingPayment = repository.FindUserAndGame(request.UserId, request.GameId);
         if (existingPayment is not null)
@@ -53,12 +38,13 @@ public class PaymentService(IPaymentRepository repository, IClient client, IElas
         repository.Add(payment);
         await unitOfWork.CommitAsync(CancellationToken.None);
         
-        logger.LogInformation("Sending payment event to azure function.");
-        if (await client.SendToPayment(payment, game) is null)
-        {
-            logger.LogError("Error sending payment to Azure Function.");
-            return Result.Error<Guid>(new Exception("Error processing payment."));
-        }
+        // Fase 4: Desabilitar Azure Functions
+        // logger.LogInformation("Sending payment event to azure function.");
+        // if (await client.SendToPayment(payment, request.Price) is null)
+        // {
+        //     logger.LogError("Error sending payment to Azure Function.");
+        //     return Result.Error<Guid>(new Exception("Error processing payment."));
+        // }
         
         logger.LogInformation("Payment successfully created. Saving payment log to Elasticsearch.");
         await elastic.AddOrUpdate(new PaymentLog(payment.Id, payment.UserId, payment.GameId), nameof(PaymentLog).ToLower());

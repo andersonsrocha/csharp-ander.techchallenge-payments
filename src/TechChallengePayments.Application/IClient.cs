@@ -5,8 +5,5 @@ namespace TechChallengePayments.Application;
 
 public interface IClient
 {
-    Task<LoginDto?> LoginAsync();
-    Task<UserDto?> GetUserAsync(Guid userId, string jwtToken);
-    Task<GameDto?> GetGameAsync(Guid gameId, string jwtToken);
-    Task<PaymentFuncDto?> SendToPayment(Payment payment, GameDto game);
+    Task<PaymentFuncDto?> SendToPayment(Payment payment, double price);
 }

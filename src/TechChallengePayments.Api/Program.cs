@@ -2,6 +2,7 @@ using Microsoft.Extensions.Options;
 using TechChallengePayments.Api.Configurations;
 using TechChallengePayments.Api.Middlewares;
 using TechChallengePayments.Application;
+using TechChallengePayments.Application.Consumer.Handlers;
 using TechChallengePayments.Data;
 using TechChallengePayments.Elasticsearch;
 using TechChallengePayments.Security;
@@ -11,6 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
+
+#region [RabbitMQ]
+builder.Services.AddHostedService<ConsumerService>();
+#endregion
 
 #region [Database]
 builder.Services.AddSqlContext(builder.Configuration);
